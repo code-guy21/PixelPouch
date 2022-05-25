@@ -1,18 +1,20 @@
-//imports
-const express = require("express");
+const express = require('express');
+const sequelize = require('./config/connection');
+const {User, Transaction} = require("./models")
 
-//PORT assignment
+const app = express();
 const PORT = process.env.PORT || 3001;
 
-//create Express app
-const app = express()
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-//basic route
-app.get("/api", (req,res) => {
+app.get("/", (req,res) => {
     res.send("welcome to the NFTracker API")
 })
 
-//start server
-app.listen(PORT, () => {
-    console.log("API running")
-})
+//sync database before starting API server
+sequelize.sync({ alter: true }).then(() => {
+  app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}!`);
+  });
+});
