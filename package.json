@@ -4,7 +4,10 @@
   "description": "Application to track NFT purchases/sales and porfolio value",
   "main": "index.js",
   "scripts": {
-    "start": "node server"
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
+    "install": "cd client && npm install && cd ../server && npm install",
+    "build": "cd client && npm run build"
   },
   "repository": {
     "type": "git",
@@ -18,6 +21,6 @@
   "homepage": "https://github.com/code-guy21/NFTracker#readme",
   "dependencies": {},
   "devDependencies": {
-    "concurrently": "^7.1.0"
+    "concurrently": "^7.2.1"
   }
 }
