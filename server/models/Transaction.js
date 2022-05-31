@@ -11,22 +11,33 @@ Transaction.init(
         autoIncrement: true
     },
     collection: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull:false
     },
     collection_id: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        defaultValue: "#0"
     },
     purchase_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        validate: {
+            isDate: true
+        }
     },
     purchase_currency: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     purchase_total: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: false
     },
     sale_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        validate: {
+            isDate: true
+        }
     },
     sale_currency: {
         type: DataTypes.STRING
@@ -43,7 +54,9 @@ Transaction.init(
     }
 }, 
     {
+
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         modelName: "transaction"
     }

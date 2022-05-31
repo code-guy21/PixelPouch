@@ -11,19 +11,29 @@ User.init({
     },
     email: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        validate: {
+            isEmail: true
+        }
     },
     password: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        validate: {
+            len: [5,10]
+        }
     },
     username: {
         type: DataTypes.STRING,
-        allowNull:false
+        allowNull:false,
+        validate: {
+            len: [4,10]
+        }
     }
 },
 {
     sequelize,
+    timestamps: false,
     freezeTableName: true,
     modelName: "user"
 })
