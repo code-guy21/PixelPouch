@@ -6,9 +6,9 @@ class Transaction extends Model{}
 Transaction.init(
 {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
     },
     collection: {
         type: DataTypes.STRING,
@@ -46,7 +46,7 @@ Transaction.init(
         type: DataTypes.DECIMAL
     },
     user_id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         references: {
             key: "id",
             model: "user"
