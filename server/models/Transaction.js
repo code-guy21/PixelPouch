@@ -1,0 +1,72 @@
+const {Model, DataTypes} = require("sequelize")
+const sequelize = require("../config/connection")
+
+class Transaction extends Model{}
+
+Transaction.init(
+{
+    id: {
+        type: DataTypes.UUID,
+        primaryKey: true,
+        defaultValue: DataTypes.UUIDV4
+    },
+    collection: {
+        type: DataTypes.STRING,
+        allowNull:false
+    },
+    collection_id: {
+        type: DataTypes.STRING,
+        defaultValue: "#0"
+    },
+    purchase_date: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        validate: {
+            isDate: true
+        }
+    },
+    purchase_currency: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    purchase_total: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+            isDecimal: true
+        }
+    },
+    sale_date: {
+        type: DataTypes.DATE,
+        validate: {
+            isDate: true
+        }
+    },
+    sale_currency: {
+        type: DataTypes.STRING
+    },
+    sale_total: {
+        type: DataTypes.DECIMAL,
+        validate: {
+            isDecimal: true
+        }
+    },
+    user_id:{
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+            key: "id",
+            model: "user"
+        }
+    }
+}, 
+    {
+
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        modelName: "transaction"
+    }
+)
+
+module.exports = Transaction
