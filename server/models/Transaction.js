@@ -31,7 +31,10 @@ Transaction.init(
     },
     purchase_total: {
         type: DataTypes.DECIMAL,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            isDecimal: true
+        }
     },
     sale_date: {
         type: DataTypes.DATE,
@@ -43,10 +46,14 @@ Transaction.init(
         type: DataTypes.STRING
     },
     sale_total: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        validate: {
+            isDecimal: true
+        }
     },
     user_id:{
         type: DataTypes.UUID,
+        allowNull: false,
         references: {
             key: "id",
             model: "user"
