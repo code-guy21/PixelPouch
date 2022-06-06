@@ -6,36 +6,54 @@ class Transaction extends Model{}
 Transaction.init(
 {
     id: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         primaryKey: true,
-        autoIncrement: true
+        defaultValue: DataTypes.UUIDV4
     },
     collection: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull:false
     },
     collection_id: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        defaultValue: "#0"
     },
     purchase_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        validate: {
+            isDate: true
+        }
     },
     purchase_currency: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
     purchase_total: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+            isDecimal: true
+        }
     },
     sale_date: {
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        validate: {
+            isDate: true
+        }
     },
     sale_currency: {
         type: DataTypes.STRING
     },
     sale_total: {
-        type: DataTypes.DECIMAL
+        type: DataTypes.DECIMAL,
+        validate: {
+            isDecimal: true
+        }
     },
     user_id:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
+        allowNull: false,
         references: {
             key: "id",
             model: "user"
@@ -43,7 +61,9 @@ Transaction.init(
     }
 }, 
     {
+
         sequelize,
+        timestamps: false,
         freezeTableName: true,
         modelName: "transaction"
     }
