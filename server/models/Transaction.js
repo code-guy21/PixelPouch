@@ -36,6 +36,13 @@ Transaction.init(
             isDecimal: true
         }
     },
+    USD_purchase_total: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        validate: {
+            isDecimal: true
+        }
+    },
     sale_date: {
         type: DataTypes.DATE,
         validate: {
@@ -47,9 +54,21 @@ Transaction.init(
     },
     sale_total: {
         type: DataTypes.DECIMAL,
+        defaultValue: 0,
         validate: {
             isDecimal: true
         }
+    },
+    USD_sale_total: {
+        type: DataTypes.DECIMAL,
+        defaultValue: 0,
+        validate: {
+            isDecimal: true
+        }
+    },
+    USD_net_total:{
+        type: DataTypes.DECIMAL,
+        defaultValue: 0
     },
     user_id:{
         type: DataTypes.UUID,
@@ -68,5 +87,13 @@ Transaction.init(
         modelName: "transaction"
     }
 )
+
+Transaction.beforeCreate((transaction) => {
+    transaction.USD_net_total = transaction.USD_sale_total - transaction.USD_purchase_total;
+})
+
+Transaction.beforeUpdate((transaction) => {
+    transaction.USD_net_total = transaction.USD_sale_total - transaction.USD_purchase_total;
+})
 
 module.exports = Transaction
