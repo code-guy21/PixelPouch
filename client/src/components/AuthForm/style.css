@@ -15,18 +15,18 @@
 	transition: all 0.2s;
 }
 
-.submit {
+.option {
 	background: none;
 	padding: 1rem;
 	border: none;
 	font-size: 1.7rem;
 }
 
-.submit:hover {
+.option:hover {
 	color: purple;
 }
 
-#signup {
+#switch {
 	margin-top: auto;
 }
 
