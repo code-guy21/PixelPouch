@@ -4,17 +4,15 @@
 	padding-top: 8rem;
 	align-items: center;
 	flex-direction: column;
-	border: 0.1rem solid red;
 }
 
-.home h3 {
-	border: 1px solid black;
-	font-size: 3rem;
+.title {
+	font-size: 4rem;
 	padding: 0.8rem;
 	margin-bottom: 4rem;
 }
 
 .container {
-	width: 35%;
+	width: 30%;
 	text-align: center;
 }

@@ -19,4 +19,5 @@ html {
 body {
 	font-family: 'Montserrat', sans-serif;
 	min-height: 100vh;
+	line-height: 2.5rem;
 }

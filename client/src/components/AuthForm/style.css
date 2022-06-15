@@ -1,25 +1,30 @@
 .auth {
 	font-size: 1.5rem;
 	border: 1px solid gray;
-	height: 400px;
+	height: 46rem;
 	display: flex;
 	flex-direction: column;
-	padding: 4rem 8rem;
+	padding: 6rem 7rem 1rem 7rem;
+	border-radius: 1rem;
 }
 
 .form_input {
-	margin-bottom: 2rem;
+	margin-bottom: 1.5rem;
 	padding: 1rem;
 	border-radius: 0.4rem;
 	border-width: 0.1rem;
 	transition: all 0.2s;
 }
 
+#submit {
+	font-size: 1.9rem;
+}
+
 .option {
 	background: none;
 	padding: 1rem;
 	border: none;
-	font-size: 1.7rem;
+	font-size: 1.5rem;
 }
 
 .option:hover {
@@ -36,4 +41,9 @@
 	height: 0;
 	margin: 0;
 	padding: 0;
+}
+
+.label {
+	margin-bottom: 3rem;
+	font-size: 2.5rem;
 }

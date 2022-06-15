@@ -5,7 +5,7 @@ import "./style.css"
 function Home() {
 	return <div className='home'>
 		<div className="container">
-		<h3 >NFTracker</h3>
+		<h3 className="title" >NFTracker</h3>
 		<AuthForm/>
 		</div>
 	</div>;
