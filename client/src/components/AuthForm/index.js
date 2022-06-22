@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { login, register } from '../../utils/api';
+import {useNavigate} from "react-router-dom"
 import './style.css';
 
 function AuthForm() {
+	const navigate = useNavigate()
 	const [toggle, setToggle] = useState(false);
 	const [formData, setFormData] = useState({
 		email: '',
@@ -10,8 +12,14 @@ function AuthForm() {
 		password: '',
 	});
 
-	const handleFormSubmit = () => {
-		toggle ? register(formData) : login(formData);
+	const handleFormSubmit = async () => {
+		try {
+			let response = toggle ? await register(formData) : await login(formData);
+			let user = await response.json();
+			navigate("/dashboard")
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const handleChange = ({ target }) => {
@@ -33,9 +41,7 @@ function AuthForm() {
 
 	return (
 		<div className='auth'>
-      	<h3 className='label'>
-				{toggle ? 'Sign up' : 'Log in'}{' '}
-			</h3>
+			<h3 className='label'>{toggle ? 'Sign up' : 'Log in'} </h3>
 			<input
 				id='option'
 				className='form_input'
@@ -61,24 +67,24 @@ function AuthForm() {
 			<button id='submit' className='option' onClick={handleFormSubmit}>
 				submit
 			</button>
-      <div id='switch'>
-        <label >{toggle ? "Already have an account?": "Don't have an account?"}</label>
-        <button
-				
-				className='option'
-				onClick={() => {
-					setToggle(!toggle);
-					setFormData({
-						email: '',
-						username: '',
-						password: '',
-					});
-					document.getElementById('option').value = '';
-				}}>
-				{toggle ? 'Log in' : 'Sign up'}
-			</button>
-      </div>
-			
+			<div id='switch'>
+				<label>
+					{toggle ? 'Already have an account?' : "Don't have an account?"}
+				</label>
+				<button
+					className='option'
+					onClick={() => {
+						setToggle(!toggle);
+						setFormData({
+							email: '',
+							username: '',
+							password: '',
+						});
+						document.getElementById('option').value = '';
+					}}>
+					{toggle ? 'Log in' : 'Sign up'}
+				</button>
+			</div>
 		</div>
 	);
 }

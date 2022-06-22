@@ -5,11 +5,11 @@ const { signToken } = require('../utils/auth');
 module.exports = {
 	createUser: async (req, res) => {
 		try {
-			const user = await User.create(req.body);
+			const {id,email,username} = await User.create(req.body);
+			const user = {id,email,username}
 			const token = signToken(user);
 			res.status(200).json({
-				token,
-				user,
+				token,user
 			});
 		} catch (error) {
 			res.status(400).send('error registering user');
@@ -17,7 +17,8 @@ module.exports = {
 	},
 	loginUser: async (req, res) => {
 		try {
-			const user = await User.findOne({
+			const userData = await User.findOne({
+	
 				where: {
 					[Op.or]: [
 						{
@@ -31,14 +32,16 @@ module.exports = {
 				include: [Transaction]
 			});
 
-			if (!user) {
+			if (!userData) {
 				res.status(400).send('error verifying user');
 			} else {
-				let check = user.checkPassword(req.body.password);
+				let check = userData.checkPassword(req.body.password);
 
 				if (!check) {
 					res.status(400).send('error verifying user');
 				} else {
+					let {id,email,transactions,username} = userData;
+					let user = {id,email,transactions,username}
 					let token = signToken(user);
 					res.json({
 						token,
