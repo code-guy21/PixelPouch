@@ -15,3 +15,4 @@ export const register = async formData =>
 			'Content-Type': 'application/json',
 		},
 	});
+
