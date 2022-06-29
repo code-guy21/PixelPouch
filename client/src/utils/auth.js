@@ -5,8 +5,22 @@ class AuthService {
 		localStorage.setItem('auth_token', token);
 	}
 
-	getUser(){
-		return jwt_decode(this.getToken())
+	getUser(token){
+		return jwt_decode(token)
+	}
+
+	loggedIn(){
+		return !this.isTokenExpired(this.getToken()) && this.getToken();
+	}
+
+	isTokenExpired(token){
+
+		try {
+			const user = jwt_decode(token)
+			return user.exp < Date.now()/1000 ? true : false;
+		} catch (error) {
+			return true;
+		}
 	}
 	
 	getToken(){

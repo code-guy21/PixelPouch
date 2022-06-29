@@ -17,8 +17,6 @@ function AuthForm() {
 	const handleFormSubmit = async (e) => {
 		e.preventDefault()
 
-
-
 		try {
 			let response = toggle ? await register(formData) : await login(formData);
 			let {token,user} = await response.json();
