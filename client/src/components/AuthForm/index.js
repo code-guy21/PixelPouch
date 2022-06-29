@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { login, register } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
-import Auth from "../../utils/auth"
+import Auth from '../../utils/auth';
 import './style.css';
 
 function AuthForm() {
@@ -14,13 +14,13 @@ function AuthForm() {
 	});
 	const [formError, setFormError] = useState(false);
 
-	const handleFormSubmit = async (e) => {
-		e.preventDefault()
+	const handleFormSubmit = async e => {
+		e.preventDefault();
 
 		try {
 			let response = toggle ? await register(formData) : await login(formData);
-			let {token,user} = await response.json();
-			Auth.login(token)
+			let { token, user } = await response.json();
+			Auth.login(token);
 			navigate('/dashboard');
 		} catch (error) {
 			setFormError(true);

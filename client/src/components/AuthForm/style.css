@@ -1,11 +1,11 @@
 .auth {
 	font-size: 1.5rem;
-	border: 1px solid gray;
 	height: 46rem;
 	display: flex;
 	flex-direction: column;
 	padding: 6rem 7rem 1rem 7rem;
 	border-radius: 1rem;
+	background-color: #00000029;
 }
 
 .form_input {

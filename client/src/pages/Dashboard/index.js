@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useSelector,useDispatch} from 'react-redux'
+import {logout,login} from "../../redux/reducers/userSlice"
 import Auth from '../../utils/auth';
 
 function Dashboard() {
-	const [loggedIn, setLoggedIn] = useState(false);
+	const dispatch = useDispatch()
+	const loggedIn = useSelector((state) => state.user.loggedIn)
 	const navigate = useNavigate();
 
-	const logout = () => {
+	const logoutUser = () => {
 		Auth.logout();
-		setLoggedIn(false);
+		dispatch(logout())
 	};
 
 	useEffect(() => {
@@ -19,7 +22,7 @@ function Dashboard() {
 				throw new Error('something went wrong');
 			}
 
-			setLoggedIn(true);
+			dispatch(login())
 		} catch (error) {
 			navigate('/');
 		}
@@ -28,7 +31,7 @@ function Dashboard() {
 	return (
 		<div>
 			<h1>dashboard</h1>
-			<button onClick={logout}>logout</button>
+			<button onClick={logoutUser}>logout</button>
 		</div>
 	);
 }
