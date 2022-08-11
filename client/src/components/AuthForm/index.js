@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import './style.css';
 
-function AuthForm() {
+function AuthForm({modalState}) {
 	const navigate = useNavigate();
 	const [toggle, setToggle] = useState(false);
 	const [formData, setFormData] = useState({
@@ -45,7 +45,7 @@ function AuthForm() {
 	};
 
 	return (
-		<div className='auth'>
+		<div className={modalState? "auth": "auth hide"}>
 			<h3 className='label'>{toggle ? 'Sign up' : 'Log in'} </h3>
 			<form>
 				<input

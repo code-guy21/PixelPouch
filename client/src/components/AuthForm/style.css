@@ -1,19 +1,36 @@
 .auth {
+	color: white;
 	font-size: 1.5rem;
 	height: 46rem;
 	display: flex;
 	flex-direction: column;
 	padding: 6rem 7rem 1rem 7rem;
 	border-radius: 1rem;
-	background-color: #00000029;
+	background-color: #42b883;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	box-shadow: 0 0 50px rgb(0 0 0 / 50%);
+	align-items: center;
+	z-index: 100;
 }
 
 .form_input {
-	margin-bottom: 1.5rem;
-	padding: 1rem;
-	border-radius: 0.4rem;
-	border-width: 0.1rem;
+	margin-bottom: 2.5rem;
+	padding: 1.3rem;
+	border-radius: 2rem;
 	transition: all 0.2s;
+	font-size: inherit;
+	border: none;
+	background-image: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+input:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px rgb(21 228 130 / 42%);
 }
 
 #submit {
@@ -22,17 +39,24 @@
 
 .option {
 	background: none;
-	padding: 1rem;
+	padding: 0.8rem;
 	border: none;
 	font-size: 1.5rem;
+	width: 60%;
+	align-self: center;
+	border-radius: 0.8rem;
+	color: white;
+	transition: all 0.15s linear;
 }
 
 .option:hover {
-	color: purple;
+	background: #00000029;
 }
 
 #switch {
 	margin-top: auto;
+	display: flex;
+	flex-direction: column;
 }
 
 .hide {
@@ -57,4 +81,8 @@
 form {
 	display: flex;
 	flex-direction: column;
+}
+
+.hide {
+	display: none;
 }

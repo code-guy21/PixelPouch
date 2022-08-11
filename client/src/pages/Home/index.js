@@ -1,14 +1,26 @@
-import React from 'react';
-import AuthForm from '../../components/AuthForm'
-import "./style.css"
+import React, { useState } from 'react';
+import AuthForm from '../../components/AuthForm';
+import './style.css';
 
 function Home() {
-	return <div className='home'>
-		<div className="container">
-		<h3 className="title" >NFTracker</h3>
-		<AuthForm/>
+	const [modalState, setModalState] = useState(false);
+
+	return (
+		<div className='home'>
+			<div className='container'>
+				<h3 className='title'>NFTracker</h3>
+				<button className='login' onClick={() => setModalState(!modalState)}>
+					login
+				</button>
+			</div>
+			<div
+				onClick={() => setModalState(!modalState)}
+				className={modalState ? 'overlay' : 'overlay hide'}>
+				
+			</div>
+			<AuthForm modalState={modalState}/>
 		</div>
-	</div>;
+	);
 }
 
 export default Home;

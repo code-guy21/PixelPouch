@@ -1,25 +1,50 @@
 .home {
 	height: 100%;
 	display: flex;
-	padding-top: 8rem;
 	align-items: center;
 	flex-direction: column;
-	background: rgb(0, 255, 163);
-	background: linear-gradient(
-		195deg,
-		rgba(0, 255, 163, 1) 0%,
-		rgba(3, 225, 255, 1) 28%,
-		rgba(220, 31, 255, 1) 100%
-	);
+	background: #42b883;
 }
 
 .title {
 	font-size: 4rem;
-	padding: 0.8rem;
-	margin-bottom: 4rem;
+}
+
+.login {
+	font-size: 3rem;
+	text-decoration: none;
+	background: none;
+	border: none;
+	color: inherit;
+	font-family: inherit;
+	transition: all 0.1s linear;
+	border-radius: 0.8rem;
+	flex-basis: 10%;
+	padding: 0.5rem 0rem 0.5rem 0rem;
+}
+
+.login:hover {
+	background-color: #00000029;
 }
 
 .container {
-	width: 30%;
-	text-align: center;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	padding: 3rem;
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+	display: flex;
+}
+
+.hide {
+	display: none;
 }
