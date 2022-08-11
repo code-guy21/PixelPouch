@@ -1,0 +1,40 @@
+#content {
+	height: 100%;
+	display: flex;
+}
+
+#menu {
+	flex-basis: 20%;
+	border-right: 1px solid grey;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	flex: 1;
+}
+
+nav {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+}
+
+#title {
+	flex-basis: 15%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+}
+
+nav button {
+	flex-basis: 15%;
+	background: none;
+	border-right: none;
+	border-left: none;
+	border-bottom: none;
+	text-align: left;
+	padding: 2rem;
+	font-family: 'Nunito', sans-serif;
+}

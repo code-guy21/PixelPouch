@@ -2,10 +2,8 @@ const { Transaction } = require('../models');
 const { Op } = require('sequelize');
 
 module.exports = {
-	
-    createTransaction: async (req, res) => {
+	createTransaction: async (req, res) => {
 		try {
-
 			let newTransaction = await Transaction.create({
 				...req.body,
 				user_id: req.user.id,

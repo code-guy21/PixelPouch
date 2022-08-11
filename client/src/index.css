@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 
 * {
 	margin: 0px;
@@ -17,15 +17,12 @@ html {
 }
 
 body {
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Nunito', sans-serif;
 	min-height: 100vh;
 	line-height: 2.5rem;
+	height: 100vh;
+}
 
-	background: rgb(0, 255, 163);
-	background: linear-gradient(
-		195deg,
-		rgba(0, 255, 163, 1) 0%,
-		rgba(3, 225, 255, 1) 28%,
-		rgba(220, 31, 255, 1) 100%
-	);
+#root {
+	height: 100%;
 }
