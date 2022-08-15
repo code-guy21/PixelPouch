@@ -8,10 +8,13 @@ function Home() {
 	return (
 		<div className='home'>
 			<div className='container'>
-				<h3 className='title'>NFTracker</h3>
+				<nav className="loginNav">
+					<h3 className='title'>NFTracker</h3>
 				<button className='login' onClick={() => setModalState(!modalState)}>
 					login
 				</button>
+				</nav>
+				
 			</div>
 			<div
 				onClick={() => setModalState(!modalState)}

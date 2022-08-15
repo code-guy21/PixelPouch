@@ -46,18 +46,18 @@ function AuthForm({modalState}) {
 
 	return (
 		<div className={modalState? "auth": "auth hide"}>
-			<h3 className='label'>{toggle ? 'Sign up' : 'Log in'} </h3>
+			<h3 className='heading'>{toggle ? 'Sign up' : 'Log in'} </h3>
 			<form>
 				<input
 					id='option'
 					className='form_input'
-					placeholder={toggle ? '...email' : '...email or username'}
+					placeholder={toggle ? 'Email' : 'Email or Username'}
 					name='option'
 					onChange={handleChange}
 				/>
 				<input
 					className={toggle ? 'form_input' : 'hide form_input'}
-					placeholder='...username'
+					placeholder='Username'
 					name='username'
 					onChange={handleChange}
 					value={formData.username}
@@ -65,13 +65,13 @@ function AuthForm({modalState}) {
 				<input
 					className='form_input'
 					type='password'
-					placeholder='...password'
+					placeholder='Password'
 					name='password'
 					onChange={handleChange}
 					value={formData.password}
 				/>
 				<button id='submit' className='option' onClick={handleFormSubmit}>
-					submit
+					Submit
 				</button>
 			</form>
 			<span id='feedback' className={formError ? '' : 'hide'}>
@@ -79,10 +79,10 @@ function AuthForm({modalState}) {
 			</span>
 			<div id='switch'>
 				<label>
-					{toggle ? 'Already have an account?' : "Don't have an account?"}
+					{toggle ? 'Already have an account? ' : "Don't have an account? "}
 				</label>
-				<button
-					className='option'
+				<a
+
 					onClick={() => {
 						setToggle(!toggle);
 						setFormData({
@@ -94,7 +94,8 @@ function AuthForm({modalState}) {
 						document.getElementById('option').value = '';
 					}}>
 					{toggle ? 'Log in' : 'Sign up'}
-				</button>
+				</a>
+				
 			</div>
 		</div>
 	);
