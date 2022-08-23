@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Auth from '../../utils/auth';
 import './style.css';
 
-function AuthForm({modalState}) {
+function AuthForm() {
 	const navigate = useNavigate();
 	const [toggle, setToggle] = useState(false);
 	const [formData, setFormData] = useState({
@@ -45,9 +45,9 @@ function AuthForm({modalState}) {
 	};
 
 	return (
-		<div className={modalState? "auth": "auth hide"}>
+		<div className='wrapper'>
 			<h3 className='heading'>{toggle ? 'Sign up' : 'Log in'} </h3>
-			<form>
+			<form className='auth'>
 				<input
 					id='option'
 					className='form_input'
@@ -73,16 +73,16 @@ function AuthForm({modalState}) {
 				<button id='submit' className='option' onClick={handleFormSubmit}>
 					Submit
 				</button>
+				<span id='feedback' className={formError ? '' : 'hide'}>
+					failed to {toggle ? 'register' : 'log in'}
+				</span>
 			</form>
-			<span id='feedback' className={formError ? '' : 'hide'}>
-				failed to {toggle ? 'register' : 'log in'}
-			</span>
+
 			<div id='switch'>
 				<label>
 					{toggle ? 'Already have an account? ' : "Don't have an account? "}
 				</label>
 				<a
-
 					onClick={() => {
 						setToggle(!toggle);
 						setFormData({
@@ -95,7 +95,6 @@ function AuthForm({modalState}) {
 					}}>
 					{toggle ? 'Log in' : 'Sign up'}
 				</a>
-				
 			</div>
 		</div>
 	);

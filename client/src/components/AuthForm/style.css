@@ -1,24 +1,8 @@
-.auth {
-	display: flex;
-	flex-direction: column;
-	padding: 4rem;
-	border-radius: 0.3rem;
-	background-color: white;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	box-shadow: 0 0 50px rgb(0 0 0 / 50%);
-	z-index: 100;
-	max-width: 45rem;
-	width: 50%;
-}
-
 .form_input {
 	margin-bottom: 1.8rem;
 	padding: 18px 16px 17px 16px;
 	border-radius: 0.3rem;
-	font-size: 2.1rem;
+	font-size: 1.8rem;
 	background-color: #edf1f5;
 	line-height: 2.5rem;
 	border: none;
@@ -40,7 +24,7 @@ input:focus {
 	cursor: pointer;
 	line-height: 2.5rem;
 	border: 0;
-	-webkit-appearance: none;
+	box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 12%);
 }
 
 .option:hover {
@@ -48,14 +32,16 @@ input:focus {
 }
 
 #switch {
-	font-size: 1.4rem;
-	align-self: center;
-	margin: 1rem 0rem;
+	font-size: 1.5rem;
+	text-align: center;
+	margin-top: 38px;
+	padding-bottom: 40px;
+	line-height: 2.8rem;
 }
 
 #switch a {
 	display: inline-block;
-	background-image: linear-gradient(to bottom, black 0%, black 100%);
+	background-image: linear-gradient(to bottom, white 0%, white 100%);
 	background-repeat: repeat-x;
 	background-size: 1px 2px;
 	background-position: 0 100%;
@@ -70,16 +56,11 @@ input:focus {
 	padding: 0;
 }
 
-label {
-	align-self: center;
-	margin-bottom: 1rem;
-	font-size: 1.5rem;
-}
-
 .heading {
-	font-size: 2.5rem;
-	align-self: center;
-	margin-bottom: 18px;
+	font-size: 3.2rem;
+	text-align: center;
+	margin: 21px 0 30px;
+	line-height: 5.1rem;
 }
 
 #feedback {
@@ -88,18 +69,25 @@ label {
 	color: red;
 }
 
-form {
+.auth {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 1.8rem;
+	padding: 4rem;
+	border-radius: 0.3rem;
+	background-color: white;
+	box-shadow: 0 10px 40px 0 rgb(0 0 0 / 30%);
+	max-width: 45rem;
+	margin: 0 auto;
 }
 
 .hide {
 	display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 700px) {
 	.auth {
-		width: initial;
+		max-width: 345px;
+		padding: 25px 25px;
 	}
 }

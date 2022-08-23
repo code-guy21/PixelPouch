@@ -1,26 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 
 * {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-*,
 *::before,
 *::after {
 	box-sizing: inherit;
 }
 
 html {
-	box-sizing: border-box;
 	font-size: 62.5%;
+	line-height: 1rem;
+	height: 100%;
 }
 
 body {
 	font-family: 'Nunito', sans-serif;
-	min-height: 100vh;
-	line-height: 2.5rem;
-	height: 100vh;
+	height: 100%;
+	color: white;
 }
 
 #root {
