@@ -18,7 +18,8 @@ module.exports = {
 				user,
 			});
 		} catch (error) {
-			res.status(400).send('error registering user');
+			console.log(error)
+			res.status(400).send(error.message);
 		}
 	},
 	loginUser: async (req, res) => {
@@ -42,14 +43,14 @@ module.exports = {
 
 			//check if user was found
 			if (!userData) {
-				res.status(400).send('error verifying user');
+				res.status(400).send('No account found');
 			} else {
 
 				//verify if user's password is correct
 				let check = userData.checkPassword(req.body.password);
 
 				if (!check) {
-					res.status(400).send('error verifying user');
+					res.status(400).send('Incorrect password');
 				} else {
 
 					//extract only necessary information from user
@@ -68,7 +69,7 @@ module.exports = {
 				}
 			}
 		} catch (error) {
-			res.status(500).json('error logging in');
+			res.status(500).send('Error logging in');
 		}
 	},
 };

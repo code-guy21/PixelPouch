@@ -2,7 +2,7 @@
 	margin-bottom: 1.8rem;
 	padding: 18px 16px 17px 16px;
 	border-radius: 0.3rem;
-	font-size: 1.8rem;
+	font-size: 2rem;
 	background-color: #edf1f5;
 	line-height: 2.5rem;
 	border: none;
@@ -25,6 +25,10 @@ input:focus {
 	line-height: 2.5rem;
 	border: 0;
 	box-shadow: 2px 2px 4px 0 rgb(0 0 0 / 12%);
+}
+
+.option:disabled {
+	opacity: 0.3;
 }
 
 .option:hover {
@@ -64,9 +68,16 @@ input:focus {
 }
 
 #feedback {
-	margin: auto;
-	padding: 0.5rem;
-	color: red;
+	background-color: #d7576b;
+	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 14%);
+	border-radius: 2px;
+	text-align: center;
+	color: #fff;
+	padding: 12px 12px;
+	font-size: 15px;
+	line-height: 18px;
+	font-weight: 500;
+	margin-bottom: 1.8rem;
 }
 
 .auth {
