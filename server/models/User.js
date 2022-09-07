@@ -52,6 +52,8 @@ User.init(
 User.beforeCreate(async user => {
 	try {
 		user.password = await bcrypt.hash(user.password, 10);
+		user.email = user.email.toLowerCase()
+		user.username = user.username.toLowerCase()
 	} catch (error) {
 		throw new Error(error);
 	}
