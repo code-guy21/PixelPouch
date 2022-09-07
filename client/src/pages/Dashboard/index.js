@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout, login } from '../../redux/reducers/userSlice';
+import { logoutUser } from '../../redux/reducers/userSlice';
 import Auth from '../../utils/auth';
 import './style.css';
 
@@ -10,24 +10,20 @@ function Dashboard() {
 	const loggedIn = useSelector(state => state.user.loggedIn);
 	const navigate = useNavigate();
 
-	const logoutUser = () => {
+	const handleLogout = () => {
 		Auth.logout();
-		dispatch(logout());
+		dispatch(logoutUser());
 	};
 
 	useEffect(() => {
-		try {
-			let token = Auth.loggedIn() ? Auth.getToken() : null;
-
-			if (!token) {
-				throw new Error('something went wrong');
-			}
-
-			dispatch(login());
-		} catch (error) {
+		if (!loggedIn) {
 			navigate('/');
 		}
 	}, [loggedIn]);
+
+	if (!loggedIn) {
+		return <div>...loading</div>;
+	}
 
 	return (
 		<div id='content'>

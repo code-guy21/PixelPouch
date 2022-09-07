@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { login, register } from '../../utils/api';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import validator from "validator"
+import validator from 'validator';
 import Auth from '../../utils/auth';
+import { loginUser } from '../../redux/reducers/userSlice';
 import './style.css';
 
 function AuthForm() {
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [toggle, setToggle] = useState(false);
 	const [formData, setFormData] = useState({
@@ -14,7 +17,7 @@ function AuthForm() {
 		password: '',
 		validEmail: false,
 		validForm: false,
-		disabled: true
+		disabled: true,
 	});
 	const [formError, setFormError] = useState(false);
 
@@ -22,11 +25,17 @@ function AuthForm() {
 		e.preventDefault();
 
 		try {
-			let response = toggle ? await register({
-				email: formData.email, username: formData.username, password: formData.password
-			}) : await login({
-				email: formData.email, username: formData.username, password: formData.password
-			});
+			let response = toggle
+				? await register({
+						email: formData.email,
+						username: formData.username,
+						password: formData.password,
+				  })
+				: await login({
+						email: formData.email,
+						username: formData.username,
+						password: formData.password,
+				  });
 
 			if (!response.ok) {
 				let text = await response.text();
@@ -34,6 +43,7 @@ function AuthForm() {
 			}
 			let { token, user } = await response.json();
 			Auth.login(token);
+			dispatch(loginUser());
 			navigate('/dashboard');
 		} catch (error) {
 			setFormError(false);
@@ -51,38 +61,41 @@ function AuthForm() {
 			password: '',
 			validEmail: false,
 			validForm: false,
-			disabled: true
+			disabled: true,
 		});
 		setFormError(false);
 		document.getElementById('option').value = '';
 	};
 
 	const handleChange = ({ target }) => {
-		let {email, username, password, validForm, disabled, validEmail} = formData
+		let { email, username, password, validForm, disabled, validEmail } =
+			formData;
 
 		if (target.name === 'option') {
-			email = target.value
+			email = target.value;
 
 			if (validator.isEmail(email)) {
-				username = toggle ? username: ""
+				username = toggle ? username : '';
 				validEmail = true;
-				validForm = toggle ? validEmail && username.length >=4 : validEmail;
+				validForm = toggle ? validEmail && username.length >= 4 : validEmail;
 			} else {
-				username = toggle ? username: target.value
-				email = toggle ? email: "";
-				validEmail = false
-				validForm = toggle ? validEmail && username.length >=4 : username.length >= 4;
+				username = toggle ? username : target.value;
+				email = toggle ? email : '';
+				validEmail = false;
+				validForm = toggle
+					? validEmail && username.length >= 4
+					: username.length >= 4;
 			}
-		}else if(target.name === "password") {
+		} else if (target.name === 'password') {
 			password = target.value;
-		}else {
+		} else {
 			username = target.value;
-			validForm = target.value.length >=4 && validEmail
+			validForm = target.value.length >= 4 && validEmail;
 		}
 
-		disabled = password.length < 5 || !validForm
+		disabled = password.length < 5 || !validForm;
 
-		setFormData({email, username, password, validForm, disabled, validEmail})
+		setFormData({ email, username, password, validForm, disabled, validEmail });
 	};
 
 	return (
@@ -114,7 +127,11 @@ function AuthForm() {
 					onChange={handleChange}
 					value={formData.password}
 				/>
-				<button id='submit' className='option' onClick={handleFormSubmit} disabled={formData.disabled}>
+				<button
+					id='submit'
+					className='option'
+					onClick={handleFormSubmit}
+					disabled={formData.disabled}>
 					Submit
 				</button>
 			</form>
