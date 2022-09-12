@@ -5,14 +5,14 @@
 }
 
 #menu {
-	flex-basis: 20%;
+	flex: 35rem 1 5;
 	border-right: 1px solid grey;
 	display: flex;
 	flex-direction: column;
 }
 
 main {
-	flex: 1;
+	flex: 35rem 50 1;
 }
 
 nav {
