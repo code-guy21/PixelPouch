@@ -88,10 +88,12 @@ Transaction.init(
     }
 )
 
+//hook used to calculate net total before transaction is created
 Transaction.beforeCreate((transaction) => {
     transaction.USD_net_total = transaction.USD_sale_total - transaction.USD_purchase_total;
 })
 
+//hook used to calculate net total before transaction is updated
 Transaction.beforeUpdate((transaction) => {
     transaction.USD_net_total = transaction.USD_sale_total - transaction.USD_purchase_total;
 })

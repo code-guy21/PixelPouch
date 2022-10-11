@@ -1,20 +1,54 @@
 .home {
-	height: 100vh;
-	display: flex;
-	padding-top: 8rem;
-	align-items: center;
-	flex-direction: column;
-	border: 0.1rem solid red;
+	min-height: 100%;
 }
 
-.home h3 {
-	border: 1px solid black;
+.title {
+	font-size: 3.5rem;
+	margin: 3.4rem 2rem 3.5rem 5rem;
+}
+.wrapper {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.login {
 	font-size: 3rem;
-	padding: 0.8rem;
-	margin-bottom: 4rem;
+	text-decoration: none;
+	background: none;
+	border: none;
+	color: inherit;
+	font-family: inherit;
+	transition: all 0.1s linear;
+	border-radius: 0.3rem;
+	flex-basis: 10%;
+	padding: 0.5rem 0rem 0.5rem 0rem;
+	text-align: center;
+	background-color: #42b883;
+	color: white;
 }
 
 .container {
-	width: 35%;
-	text-align: center;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.login:hover {
+	background-color: #3aa776;
+}
+
+.loginNav {
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.hide {
+	display: none;
+}
+
+.modalContainer {
+	background: rgba(0, 0, 0, 0.5);
+	overflow-x: hidden;
+	overflow-y: auto;
 }

@@ -1,0 +1,47 @@
+#content {
+	height: 100vh;
+	display: flex;
+	color: white;
+	font-family: sans-serif;
+}
+
+#menu {
+	flex: 30rem 1 5;
+	border-right: 1px solid grey;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	overflow: auto;
+}
+
+main {
+	flex: 30rem 50 1;
+}
+
+nav {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+#title {
+	padding: 5rem;
+	text-align: center;
+	font-size: 3rem;
+	border-bottom: 1px solid grey;
+}
+
+.menu_option {
+	border-bottom: 1px solid grey;
+	font-size: 1.6rem;
+	margin-bottom: 2rem;
+	padding-top: 8rem;
+	padding-bottom: 1rem;
+}
+
+.dashTitle {
+	padding: 3rem;
+	border-bottom: 1px solid grey;
+	display: flex;
+	justify-content: space-between;
+}
