@@ -41,9 +41,10 @@ function AuthForm() {
 				let text = await response.text();
 				throw new Error(text);
 			}
-			let { token, user } = await response.json();
+			let { token, userInfo } = await response.json();
 			Auth.login(token);
-			dispatch(loginUser());
+			debugger;
+			dispatch(loginUser(userInfo));
 			navigate('/dashboard');
 		} catch (error) {
 			setFormError(false);

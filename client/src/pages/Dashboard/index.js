@@ -7,7 +7,7 @@ import './style.css';
 
 function Dashboard() {
 	const dispatch = useDispatch();
-	const loggedIn = useSelector(state => state.user.loggedIn);
+	const user = useSelector(state => state.user);
 	const navigate = useNavigate();
 
 	const handleLogout = () => {
@@ -16,30 +16,33 @@ function Dashboard() {
 	};
 
 	useEffect(() => {
-		if (!loggedIn) {
+		if (!user.loggedIn) {
 			navigate('/');
 		}
-	}, [loggedIn]);
+	}, [user.loggedIn]);
 
-	if (!loggedIn) {
+	if (!user.loggedIn) {
 		return <div>...loading</div>;
 	}
 
 	return (
-		<div id='content'>
-			<aside id='menu'>
-				<div id='title'>
-					<h1>NFTracker</h1>
-				</div>
-
-				<nav>
-					<button>Profile</button>
-					<button>Transactions</button>
-					<button>Stats</button>
-				</nav>
-			</aside>
-			<main></main>
-		</div>
+		<>
+			<header className='dashTitle'>
+				<h1>NFTracker</h1>
+				<button onClick={handleLogout}>logout</button>
+			</header>
+			<div id='content'>
+				<aside id='menu'>
+					<h1 id='title'>{user.username}</h1>
+					<nav>
+						<div className='menu_option'>Profile</div>
+						<div className='menu_option'>Transactions</div>
+						<div className='menu_option'>Stats</div>
+					</nav>
+				</aside>
+				<main></main>
+			</div>
+		</>
 	);
 }
 

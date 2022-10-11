@@ -16,7 +16,8 @@ function App() {
 		if (!token) {
 			dispatch(logoutUser());
 		} else {
-			dispatch(loginUser());
+			let { data } = Auth.getUser(token);
+			dispatch(loginUser(data));
 		}
 	}, [loggedIn]);
 
