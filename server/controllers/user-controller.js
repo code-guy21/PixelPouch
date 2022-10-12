@@ -70,15 +70,15 @@ module.exports = {
 					//extract only necessary information from user
 					let { id, email, transactions, username } = userData;
 
-					let user = { id, email, transactions, username };
+					let userInfo = { id, email, username, transactions };
 
 					//create JSON web token with user data as payload
-					let token = signToken(user);
+					let token = signToken({ id, email, username });
 
 					//send client JSON web token along with user data
 					res.json({
 						token,
-						user,
+						userInfo,
 					});
 				}
 			}

@@ -41,11 +41,10 @@ function AuthForm() {
 				let text = await response.text();
 				throw new Error(text);
 			}
+			debugger;
 			let { token, userInfo } = await response.json();
 			Auth.login(token);
-			debugger;
 			dispatch(loginUser(userInfo));
-			navigate('/dashboard');
 		} catch (error) {
 			setFormError(false);
 			setTimeout(() => {
