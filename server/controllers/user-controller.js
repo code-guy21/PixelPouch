@@ -3,6 +3,17 @@ const { User, Transaction } = require('../models');
 const { signToken } = require('../utils/auth');
 
 module.exports = {
+	currentUser: async (req, res) => {
+		try {
+			let user = await User.findOne({
+				where: { id: req.user.id },
+				include: [Transaction],
+			});
+			res.json(user);
+		} catch (error) {
+			res.status(500).json(error);
+		}
+	},
 	createUser: async (req, res) => {
 		try {
 			const user = await User.findOne({

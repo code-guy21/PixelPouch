@@ -40,7 +40,11 @@ function Dashboard() {
 						<div className='menu_option'>Stats</div>
 					</nav>
 				</aside>
-				<main></main>
+				<main>
+					{user.transactions.map(t => (
+						<div>{t.collection}</div>
+					))}
+				</main>
 			</div>
 		</>
 	);

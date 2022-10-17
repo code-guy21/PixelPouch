@@ -41,7 +41,7 @@ function AuthForm() {
 				let text = await response.text();
 				throw new Error(text);
 			}
-			debugger;
+
 			let { token, userInfo } = await response.json();
 			Auth.login(token);
 			dispatch(loginUser(userInfo));
