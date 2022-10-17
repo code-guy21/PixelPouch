@@ -26,7 +26,7 @@ app.use(routes);
 //synchronize database before starting API server
 sequelize
 	.sync({
-		force: false,
+		force: true,
 	})
 	.then(() => {
 		app.listen(PORT, () => {

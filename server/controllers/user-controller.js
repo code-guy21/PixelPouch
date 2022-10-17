@@ -5,11 +5,12 @@ const { signToken } = require('../utils/auth');
 module.exports = {
 	currentUser: async (req, res) => {
 		try {
-			let user = await User.findOne({
+			let { id, email, username, transactions } = await User.findOne({
 				where: { id: req.user.id },
 				include: [Transaction],
 			});
-			res.json(user);
+			const userInfo = { id, email, username, transactions };
+			res.json(userInfo);
 		} catch (error) {
 			res.status(500).json(error);
 		}

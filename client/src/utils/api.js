@@ -16,3 +16,10 @@ export const register = async formData =>
 		},
 	});
 
+export const currentUser = async token =>
+	fetch('/api/user', {
+		method: 'GET',
+		headers: {
+			authorization: 'Bearer ' + token,
+		},
+	});

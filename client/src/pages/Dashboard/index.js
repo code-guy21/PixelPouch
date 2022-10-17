@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { currentUser } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser } from '../../redux/reducers/userSlice';
+import { logoutUser, loginUser } from '../../redux/reducers/userSlice';
 import Auth from '../../utils/auth';
 import './style.css';
 
@@ -13,11 +14,22 @@ function Dashboard() {
 	const handleLogout = () => {
 		Auth.logout();
 		dispatch(logoutUser());
+		navigate('/');
 	};
 
 	useEffect(() => {
-		if (!user.loggedIn) {
+		let token = Auth.loggedIn() ? Auth.getToken() : null;
+
+		if (!token) {
 			navigate('/');
+		} else if (!user.loggedIn) {
+			const getUser = async () => {
+				const resp = await currentUser(token);
+				const userInfo = await resp.json();
+				dispatch(loginUser(userInfo));
+			};
+
+			getUser();
 		}
 	}, [user.loggedIn]);
 
@@ -41,9 +53,11 @@ function Dashboard() {
 					</nav>
 				</aside>
 				<main>
-					{user.transactions.map(t => (
-						<div>{t.collection}</div>
-					))}
+					{user.transactions.length > 0 ? (
+						user.transactions.map(t => <div>{t.collection}</div>)
+					) : (
+						<div>no transactions</div>
+					)}
 				</main>
 			</div>
 		</>

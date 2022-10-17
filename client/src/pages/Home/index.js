@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthForm from '../../components/AuthForm';
+import Auth from '../../utils/auth';
 import './style.css';
 
 function Home() {
-	const loggedIn = useSelector(state => state.user.loggedIn);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (loggedIn) {
+		let token = Auth.loggedIn() ? Auth.getToken() : null;
+		if (token) {
 			navigate('/dashboard');
 		}
-	}, [loggedIn]);
-
-	if (loggedIn) {
-		return <div>...loading</div>;
-	}
+	}, []);
 
 	return (
 		<div className='home'>
