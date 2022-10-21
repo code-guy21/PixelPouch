@@ -16,6 +16,9 @@
 
 main {
 	flex: 30rem 50 1;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
 }
 
 nav {
@@ -44,4 +47,21 @@ nav {
 	border-bottom: 1px solid grey;
 	display: flex;
 	justify-content: space-between;
+}
+
+.card {
+	display: flex;
+	border: 1px solid white;
+	font-size: 2rem;
+	margin-bottom: 1rem;
+}
+
+.item {
+	flex: 1;
+	padding: 2rem;
+	border-right: 1px solid white;
+}
+
+.item:last-child {
+	border: none;
 }

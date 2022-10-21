@@ -3,6 +3,7 @@ import { currentUser } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, loginUser } from '../../redux/reducers/userSlice';
+import { format, parseISO, isValid } from 'date-fns';
 import Auth from '../../utils/auth';
 import './style.css';
 
@@ -54,7 +55,25 @@ function Dashboard() {
 				</aside>
 				<main>
 					{user.transactions.length > 0 ? (
-						user.transactions.map(t => <div>{t.collection}</div>)
+						user.transactions.map((t, i) => {
+							return (
+								<div className='card' key={i}>
+									<div className='item'>{t.collection}</div>
+									<div className='item'>{t.collection_id}</div>
+									<div className='item'>
+										{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
+									</div>
+									<div className='item'>{t.purchase_currency}</div>
+									<div className='item'>{t.purchase_total}</div>
+									<div className='item'>{t.USD_purchase_total}</div>
+									<div className='item'>{t.sale_date}</div>
+									<div className='item'>{t.sale_currency}</div>
+									<div className='item'>{t.sale_total}</div>
+									<div className='item'>{t.USD_sale_total}</div>
+									<div className='item'>{t.USD_net_total}</div>
+								</div>
+							);
+						})
 					) : (
 						<div>no transactions</div>
 					)}
