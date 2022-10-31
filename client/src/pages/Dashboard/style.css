@@ -6,25 +6,30 @@
 }
 
 #menu {
-	flex: 30rem 1 5;
-	border-right: 1px solid grey;
 	display: flex;
 	flex-direction: column;
-	padding: 2rem;
-	overflow: auto;
+	margin-top: 8rem;
+	overflow-x: hidden;
+}
+
+#menu::-webkit-scrollbar {
+	display: none;
+}
+
+.sidebar {
+	display: flex;
+	position: fixed;
+	width: 24rem;
+	top: 0;
+	height: 100vh;
 }
 
 main {
-	flex: 30rem 50 1;
 	display: flex;
 	flex-direction: column;
 	padding: 1rem;
-}
-
-nav {
-	flex: 1;
-	display: flex;
-	flex-direction: column;
+	margin-left: 24rem;
+	width: calc(100% - 24rem);
 }
 
 #title {
@@ -42,11 +47,49 @@ nav {
 	padding-bottom: 1rem;
 }
 
-.dashTitle {
-	padding: 3rem;
+.small_menu {
+	display: flex;
+	flex: 1;
+	justify-content: flex-end;
+	height: 100%;
+}
+
+.small_menu button {
+	font-size: 2rem;
+	background: none;
+	color: white;
+	border: none;
+}
+
+.side_nav {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1;
+}
+
+.main_nav {
+	display: flex;
+	align-items: center;
+	width: 100%;
+}
+
+.main_nav h1 {
+	font-size: 3rem;
+	flex: 3 1;
+	height: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.dash_header {
+	padding: 0 2rem 0 2rem;
 	border-bottom: 1px solid grey;
 	display: flex;
-	justify-content: space-between;
+	height: 8rem;
+	position: sticky;
+	z-index: 30;
+	top: 0;
+	background-color: #1b1325;
 }
 
 .card {

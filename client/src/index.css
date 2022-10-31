@@ -15,7 +15,7 @@ html {
 	font-size: 62.5%;
 	line-height: 1rem;
 	height: 100vh;
-	background: url(./images/dragon-scales.svg) center top no-repeat;
+	background: #1b1325;
 	background-size: cover;
 }
 

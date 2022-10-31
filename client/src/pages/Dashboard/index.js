@@ -40,19 +40,26 @@ function Dashboard() {
 
 	return (
 		<>
-			<header className='dashTitle'>
-				<h1>NFTracker</h1>
-				<button onClick={handleLogout}>logout</button>
+			<header className='dash_header'>
+				<nav className='main_nav'>
+					<h1>NFTracker</h1>
+					<div className='small_menu'>
+						<button onClick={handleLogout}>logout</button>
+					</div>
+				</nav>
 			</header>
 			<div id='content'>
-				<aside id='menu'>
-					<h1 id='title'>{user.username}</h1>
-					<nav>
-						<div className='menu_option'>Profile</div>
-						<div className='menu_option'>Transactions</div>
-						<div className='menu_option'>Stats</div>
-					</nav>
-				</aside>
+				<div className='sidebar'>
+					<aside id='menu'>
+						<h1 id='title'>{user.username}</h1>
+						<nav className='side_nav'>
+							<div className='menu_option'>Profile</div>
+							<div className='menu_option'>Transactions</div>
+							<div className='menu_option'>Stats</div>
+						</nav>
+					</aside>
+				</div>
+
 				<main>
 					{user.transactions.length > 0 ? (
 						user.transactions.map((t, i) => {
