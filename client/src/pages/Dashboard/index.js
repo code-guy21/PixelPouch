@@ -51,39 +51,50 @@ function Dashboard() {
 			<div id='content'>
 				<div className='sidebar'>
 					<aside id='menu'>
-						<h1 id='title'>{user.username}</h1>
-						<nav className='side_nav'>
-							<div className='menu_option'>Profile</div>
-							<div className='menu_option'>Transactions</div>
-							<div className='menu_option'>Stats</div>
-						</nav>
+						<ul>
+							<li className='menu_option title'>
+								<div className='menu_item'>{user.username.toUpperCase()}</div>
+							</li>
+
+							<li className='menu_option'>
+								<div className='menu_item'>Profile</div>
+							</li>
+							<li className='menu_option'>
+								<div className='menu_item'>Transactions</div>
+							</li>
+							<li className='menu_option'>
+								<div className='menu_item'>Stats</div>
+							</li>
+						</ul>
 					</aside>
 				</div>
 
 				<main>
-					{user.transactions.length > 0 ? (
-						user.transactions.map((t, i) => {
-							return (
-								<div className='card' key={i}>
-									<div className='item'>{t.collection}</div>
-									<div className='item'>{t.collection_id}</div>
-									<div className='item'>
-										{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
+					<section className='transactions'>
+						{user.transactions.length > 0 ? (
+							user.transactions.map((t, i) => {
+								return (
+									<div className='card' key={i}>
+										<div className='item'>{t.collection}</div>
+										<div className='item'>{t.collection_id}</div>
+										<div className='item'>
+											{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
+										</div>
+										<div className='item'>{t.purchase_currency}</div>
+										<div className='item'>{t.purchase_total}</div>
+										<div className='item'>{t.USD_purchase_total}</div>
+										<div className='item'>{t.sale_date}</div>
+										<div className='item'>{t.sale_currency}</div>
+										<div className='item'>{t.sale_total}</div>
+										<div className='item'>{t.USD_sale_total}</div>
+										<div className='item'>{t.USD_net_total}</div>
 									</div>
-									<div className='item'>{t.purchase_currency}</div>
-									<div className='item'>{t.purchase_total}</div>
-									<div className='item'>{t.USD_purchase_total}</div>
-									<div className='item'>{t.sale_date}</div>
-									<div className='item'>{t.sale_currency}</div>
-									<div className='item'>{t.sale_total}</div>
-									<div className='item'>{t.USD_sale_total}</div>
-									<div className='item'>{t.USD_net_total}</div>
-								</div>
-							);
-						})
-					) : (
-						<div>no transactions</div>
-					)}
+								);
+							})
+						) : (
+							<div>no transactions</div>
+						)}
+					</section>
 				</main>
 			</div>
 		</>

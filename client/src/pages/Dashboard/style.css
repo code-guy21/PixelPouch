@@ -6,10 +6,17 @@
 }
 
 #menu {
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 	margin-top: 8rem;
 	overflow-x: hidden;
+	padding: 0 1.5rem 0 1.5rem;
+}
+
+#menu ul {
+	flex: 1;
+	list-style: none;
 }
 
 #menu::-webkit-scrollbar {
@@ -22,29 +29,35 @@
 	width: 24rem;
 	top: 0;
 	height: 100vh;
+	border-right: 1px solid #24182f;
 }
 
 main {
 	display: flex;
 	flex-direction: column;
-	padding: 1rem;
+	padding: 0 1.5rem 0 1.5rem;
 	margin-left: 24rem;
 	width: calc(100% - 24rem);
 }
 
-#title {
-	padding: 5rem;
-	text-align: center;
-	font-size: 3rem;
-	border-bottom: 1px solid grey;
+.transactions {
+	border: 1px solid #24182f;
+	padding: 1rem;
+	flex: 1;
+	border-radius: 1rem;
+}
+
+.title {
+	background-color: #1c1128;
 }
 
 .menu_option {
-	border-bottom: 1px solid grey;
-	font-size: 1.6rem;
-	margin-bottom: 2rem;
-	padding-top: 8rem;
-	padding-bottom: 1rem;
+	margin: 1rem 0;
+}
+
+.menu_item {
+	padding: 1rem;
+	font-size: 1.4rem;
 }
 
 .small_menu {
@@ -55,16 +68,10 @@ main {
 }
 
 .small_menu button {
-	font-size: 2rem;
+	font-size: 1.4rem;
 	background: none;
 	color: white;
 	border: none;
-}
-
-.side_nav {
-	display: flex;
-	flex-direction: column;
-	flex: 1 1;
 }
 
 .main_nav {
@@ -82,20 +89,19 @@ main {
 }
 
 .dash_header {
-	padding: 0 2rem 0 2rem;
-	border-bottom: 1px solid grey;
+	padding: 0 1.5rem;
 	display: flex;
 	height: 8rem;
 	position: sticky;
 	z-index: 30;
 	top: 0;
-	background-color: #1b1325;
+	background-color: #0f0a19;
 }
 
 .card {
 	display: flex;
 	border: 1px solid white;
-	font-size: 2rem;
+	font-size: 1.4rem;
 	margin-bottom: 1rem;
 }
 
