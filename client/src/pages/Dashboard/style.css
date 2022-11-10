@@ -53,10 +53,23 @@ main {
 
 .menu_option {
 	margin: 1rem 0;
+	line-height: 1;
 }
 
 .menu_item {
+	font-size: 1.4rem;
+	display: flex;
+}
+
+.menu_selection {
+	display: flex;
 	padding: 1rem;
+	align-items: center;
+	flex: 1;
+}
+
+.menu_selection p {
+	margin-left: 0.5rem;
 	font-size: 1.4rem;
 }
 

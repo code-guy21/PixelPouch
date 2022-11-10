@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, loginUser } from '../../redux/reducers/userSlice';
 import { format, parseISO, isValid } from 'date-fns';
+import iconSet from './selection.json';
+import IcomoonReact, { iconList } from 'icomoon-react';
 import Auth from '../../utils/auth';
 import './style.css';
 
@@ -53,17 +55,57 @@ function Dashboard() {
 					<aside id='menu'>
 						<ul>
 							<li className='menu_option title'>
-								<div className='menu_item'>{user.username.toUpperCase()}</div>
+								<div className='menu_selection'>
+									<div className='menu_item'>{user.username.toUpperCase()}</div>
+								</div>
 							</li>
 
 							<li className='menu_option'>
-								<div className='menu_item'>Profile</div>
+								<div className='menu_item'>
+									<div className='menu_selection'>
+										<span>
+											<IcomoonReact
+												iconSet={iconSet}
+												color='#ffff'
+												size={20}
+												icon='user'
+											/>
+										</span>
+
+										<p>Profile</p>
+									</div>
+								</div>
 							</li>
 							<li className='menu_option'>
-								<div className='menu_item'>Transactions</div>
+								<div className='menu_item'>
+									<div className='menu_selection'>
+										<span>
+											<IcomoonReact
+												iconSet={iconSet}
+												color='#ffff'
+												size={20}
+												icon='coin-dollar'
+											/>
+										</span>
+										<p>Transactions</p>
+									</div>
+								</div>
 							</li>
 							<li className='menu_option'>
-								<div className='menu_item'>Stats</div>
+								<div className='menu_item'>
+									<div className='menu_selection'>
+										{' '}
+										<span>
+											<IcomoonReact
+												iconSet={iconSet}
+												color='#ffff'
+												size={20}
+												icon='stats-dots'
+											/>
+										</span>
+										<p>Stats</p>
+									</div>
+								</div>
 							</li>
 						</ul>
 					</aside>
