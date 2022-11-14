@@ -112,8 +112,33 @@ function Dashboard() {
 				</div>
 
 				<main>
-					<section className='transactions'>
-						{user.transactions.length > 0 ? (
+					<section className='content'>
+						<div className='transactions'>
+							{user.transactions.length > 0 ? (
+								user.transactions.map((t, i) => {
+									return (
+										<div className='card' key={i}>
+											<div className='item'>{t.collection}</div>
+											<div className='item'>{t.collection_id}</div>
+											<div className='item'>
+												{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
+											</div>
+											<div className='item'>{t.purchase_currency}</div>
+											<div className='item'>{t.purchase_total}</div>
+											<div className='item'>{t.USD_purchase_total}</div>
+											<div className='item'>{t.sale_date}</div>
+											<div className='item'>{t.sale_currency}</div>
+											<div className='item'>{t.sale_total}</div>
+											<div className='item'>{t.USD_sale_total}</div>
+											<div className='item'>{t.USD_net_total}</div>
+										</div>
+									);
+								})
+							) : (
+								<div>no transactions</div>
+							)}
+						</div>
+						{/* {user.transactions.length > 0 ? (
 							user.transactions.map((t, i) => {
 								return (
 									<div className='card' key={i}>
@@ -135,7 +160,7 @@ function Dashboard() {
 							})
 						) : (
 							<div>no transactions</div>
-						)}
+						)} */}
 					</section>
 				</main>
 			</div>

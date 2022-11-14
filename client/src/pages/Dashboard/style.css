@@ -40,11 +40,18 @@ main {
 	width: calc(100% - 24rem);
 }
 
-.transactions {
+.content {
 	border: 1px solid #24182f;
 	padding: 1rem;
 	flex: 1;
 	border-radius: 1rem;
+}
+
+.transactions {
+	flex: 1;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-gap: 2rem;
 }
 
 .title {
@@ -112,18 +119,29 @@ main {
 }
 
 .card {
-	display: flex;
 	border: 1px solid white;
 	font-size: 1.4rem;
-	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
 }
 
 .item {
 	flex: 1;
-	padding: 2rem;
-	border-right: 1px solid white;
+	padding: 1rem;
 }
 
 .item:last-child {
 	border: none;
+}
+
+@media only screen and (min-width: 500px) {
+	.transactions {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 900px) {
+	.transactions {
+		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
 }
