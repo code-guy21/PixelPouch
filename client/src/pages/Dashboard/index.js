@@ -112,7 +112,27 @@ function Dashboard() {
 				</div>
 
 				<main>
-					<section className='content'>
+					<section>
+						<div className='mini_nav'>
+							<div className='view'>
+								<button>
+									<IcomoonReact
+										iconSet={iconSet}
+										color='#ffff'
+										size={20}
+										icon='menu'
+									/>
+								</button>
+								<button>
+									<IcomoonReact
+										iconSet={iconSet}
+										color='#ffff'
+										size={20}
+										icon='border-all'
+									/>
+								</button>
+							</div>
+						</div>
 						<div className='transactions'>
 							{user.transactions.length > 0 ? (
 								user.transactions.map((t, i) => {

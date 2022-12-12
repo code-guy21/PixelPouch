@@ -40,7 +40,7 @@ main {
 	width: calc(100% - 24rem);
 }
 
-.content {
+main section {
 	border: 1px solid #24182f;
 	padding: 1rem;
 	flex: 1;
@@ -52,10 +52,34 @@ main {
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-gap: 2rem;
+	padding: 1rem;
 }
 
 .title {
 	background-color: #1c1128;
+}
+
+.mini_nav {
+	padding: 1rem;
+}
+
+.view {
+	border: 1px solid #24182f;
+	display: inline-block;
+}
+
+.view button {
+	padding: 0.5rem;
+	color: white;
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.view button svg {
+	height: 1em;
+	width: 1em;
+	font-size: 2.5rem;
 }
 
 .menu_option {
@@ -123,6 +147,7 @@ main {
 	font-size: 1.4rem;
 	display: flex;
 	flex-direction: column;
+	border-radius: 1rem;
 }
 
 .item {
@@ -134,14 +159,26 @@ main {
 	border: none;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 800px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr;
 	}
 }
 
-@media only screen and (min-width: 900px) {
+@media only screen and (min-width: 1100px) {
+	.transactions {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1500px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 1900px) {
+	.transactions {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 }
