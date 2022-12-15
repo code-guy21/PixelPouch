@@ -8,6 +8,7 @@ import iconSet from './selection.json';
 import IcomoonReact, { iconList } from 'icomoon-react';
 import Auth from '../../utils/auth';
 import './style.css';
+import thug from '../../images/thugbird.png';
 
 function Dashboard() {
 	const dispatch = useDispatch();
@@ -138,7 +139,11 @@ function Dashboard() {
 								user.transactions.map((t, i) => {
 									return (
 										<div className='card' key={i}>
-											<div className='item'>{t.collection}</div>
+											<div className='card_image'>
+												<img src={thug}></img>
+											</div>
+											<div className='info'></div>
+											{/* <div className='item'>{t.collection}</div>
 											<div className='item'>{t.collection_id}</div>
 											<div className='item'>
 												{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
@@ -150,7 +155,7 @@ function Dashboard() {
 											<div className='item'>{t.sale_currency}</div>
 											<div className='item'>{t.sale_total}</div>
 											<div className='item'>{t.USD_sale_total}</div>
-											<div className='item'>{t.USD_net_total}</div>
+											<div className='item'>{t.USD_net_total}</div> */}
 										</div>
 									);
 								})
