@@ -5,7 +5,7 @@
 	font-family: sans-serif;
 }
 
-#menu {
+#dashboard {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
@@ -14,12 +14,12 @@
 	padding: 0 1.5rem 0 1.5rem;
 }
 
-#menu ul {
+#dashboard ul {
 	flex: 1;
 	list-style: none;
 }
 
-#menu::-webkit-scrollbar {
+#dashboard::-webkit-scrollbar {
 	display: none;
 }
 
@@ -56,7 +56,7 @@ main section {
 	justify-items: center;
 }
 
-.title {
+#dashboard > ul li:first-child {
 	background-color: #1c1128;
 }
 
@@ -83,7 +83,7 @@ main section {
 	font-size: 2.5rem;
 }
 
-.menu_option {
+.dash_option {
 	margin: 1rem 0;
 	line-height: 1;
 }
@@ -93,39 +93,39 @@ main section {
 	display: flex;
 }
 
-.menu_selection {
+.dash_selection {
 	display: flex;
 	padding: 1rem;
 	align-items: center;
 	flex: 1;
 }
 
-.menu_selection p {
+.dash_selection p {
 	margin-left: 0.5rem;
 	font-size: 1.4rem;
 }
 
-.small_menu {
+.menu {
 	display: flex;
 	flex: 1;
 	justify-content: flex-end;
 	height: 100%;
 }
 
-.small_menu button {
+.menu button {
 	font-size: 1.4rem;
 	background: none;
 	color: white;
 	border: none;
 }
 
-.main_nav {
+.nav {
 	display: flex;
 	align-items: center;
 	width: 100%;
 }
 
-.main_nav h1 {
+.nav h1 {
 	font-size: 3rem;
 	flex: 3 1;
 	height: 100%;
@@ -133,7 +133,7 @@ main section {
 	align-items: center;
 }
 
-.dash_header {
+header {
 	padding: 0 1.5rem;
 	display: flex;
 	height: 8rem;
@@ -149,8 +149,8 @@ main section {
 	display: flex;
 	flex-direction: column;
 	border-radius: 1rem;
-	height: 50rem;
-	width: 40rem;
+	height: 40rem;
+	width: 30rem;
 	overflow: hidden;
 }
 
@@ -160,11 +160,25 @@ main section {
 }
 
 .card_image {
-	height: 40rem;
+	height: 30rem;
 }
 
 .info {
 	height: 10rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.info > div {
+	padding: 1rem;
+	flex: 1;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+}
+
+.info > div:nth-child(3) {
+	justify-content: space-between;
 }
 .item {
 	flex: 1;
@@ -175,26 +189,32 @@ main section {
 	border: none;
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 900px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr;
 	}
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1250px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }
 
-@media only screen and (min-width: 2000px) {
+@media only screen and (min-width: 1600px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 	}
 }
 
-@media only screen and (min-width: 2500px) {
+@media only screen and (min-width: 2000px) {
 	.transactions {
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	}
+}
+
+@media only screen and (min-width: 2500px) {
+	.transactions {
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 	}
 }

@@ -43,27 +43,27 @@ function Dashboard() {
 
 	return (
 		<>
-			<header className='dash_header'>
-				<nav className='main_nav'>
+			<header>
+				<nav className='nav'>
 					<h1>NFTracker</h1>
-					<div className='small_menu'>
+					<div className='menu'>
 						<button onClick={handleLogout}>logout</button>
 					</div>
 				</nav>
 			</header>
 			<div id='content'>
 				<div className='sidebar'>
-					<aside id='menu'>
+					<nav id='dashboard'>
 						<ul>
-							<li className='menu_option title'>
-								<div className='menu_selection'>
+							<li className='dash_option'>
+								<div className='dash_selection'>
 									<div className='menu_item'>{user.username.toUpperCase()}</div>
 								</div>
 							</li>
 
-							<li className='menu_option'>
+							<li className='dash_option'>
 								<div className='menu_item'>
-									<div className='menu_selection'>
+									<div className='dash_selection'>
 										<span>
 											<IcomoonReact
 												iconSet={iconSet}
@@ -77,9 +77,9 @@ function Dashboard() {
 									</div>
 								</div>
 							</li>
-							<li className='menu_option'>
+							<li className='dash_option'>
 								<div className='menu_item'>
-									<div className='menu_selection'>
+									<div className='dash_selection'>
 										<span>
 											<IcomoonReact
 												iconSet={iconSet}
@@ -92,9 +92,9 @@ function Dashboard() {
 									</div>
 								</div>
 							</li>
-							<li className='menu_option'>
+							<li className='dash_option'>
 								<div className='menu_item'>
-									<div className='menu_selection'>
+									<div className='dash_selection'>
 										{' '}
 										<span>
 											<IcomoonReact
@@ -109,7 +109,7 @@ function Dashboard() {
 								</div>
 							</li>
 						</ul>
-					</aside>
+					</nav>
 				</div>
 
 				<main>
@@ -142,9 +142,16 @@ function Dashboard() {
 											<div className='card_image'>
 												<img src={thug}></img>
 											</div>
-											<div className='info'></div>
-											{/* <div className='item'>{t.collection}</div>
-											<div className='item'>{t.collection_id}</div>
+											<div className='info'>
+												<div>{t.collection}</div>
+												<div>{t.collection_id}</div>
+												<div>
+													<div>◎{t.purchase_total}</div>
+													<a>details</a>
+												</div>
+											</div>
+											{/* 
+											
 											<div className='item'>
 												{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
 											</div>
@@ -163,29 +170,6 @@ function Dashboard() {
 								<div>no transactions</div>
 							)}
 						</div>
-						{/* {user.transactions.length > 0 ? (
-							user.transactions.map((t, i) => {
-								return (
-									<div className='card' key={i}>
-										<div className='item'>{t.collection}</div>
-										<div className='item'>{t.collection_id}</div>
-										<div className='item'>
-											{format(parseISO(t.purchase_date), 'MM/dd/yyyy')}
-										</div>
-										<div className='item'>{t.purchase_currency}</div>
-										<div className='item'>{t.purchase_total}</div>
-										<div className='item'>{t.USD_purchase_total}</div>
-										<div className='item'>{t.sale_date}</div>
-										<div className='item'>{t.sale_currency}</div>
-										<div className='item'>{t.sale_total}</div>
-										<div className='item'>{t.USD_sale_total}</div>
-										<div className='item'>{t.USD_net_total}</div>
-									</div>
-								);
-							})
-						) : (
-							<div>no transactions</div>
-						)} */}
 					</section>
 				</main>
 			</div>
