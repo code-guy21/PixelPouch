@@ -9,7 +9,8 @@ const sequelize = process.env.JAWSDB_MARIA_URL
 			process.env.DB_USER,
 			process.env.DB_PASSWORD,
 			{
-				host: 'localhost',
+				host: process.env.DB_HOST,
+				port: process.env.DB_PORT,
 				dialect: 'mysql',
 				dialectOptions: {
 					decimalNumbers: true,
