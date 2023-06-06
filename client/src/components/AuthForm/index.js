@@ -43,7 +43,6 @@ function AuthForm() {
 			}
 			let { token, userInfo } = await response.json();
 			Auth.login(token);
-			debugger;
 			dispatch(loginUser(userInfo));
 			navigate('/dashboard');
 		} catch (error) {

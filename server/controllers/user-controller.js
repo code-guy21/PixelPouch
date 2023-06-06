@@ -3,6 +3,18 @@ const { User, Transaction } = require('../models');
 const { signToken } = require('../utils/auth');
 
 module.exports = {
+	currentUser: async (req, res) => {
+		try {
+			let { id, email, username, transactions } = await User.findOne({
+				where: { id: req.user.id },
+				include: [Transaction],
+			});
+			const userInfo = { id, email, username, transactions };
+			res.json(userInfo);
+		} catch (error) {
+			res.status(500).json(error);
+		}
+	},
 	createUser: async (req, res) => {
 		try {
 			const user = await User.findOne({
@@ -70,15 +82,15 @@ module.exports = {
 					//extract only necessary information from user
 					let { id, email, transactions, username } = userData;
 
-					let user = { id, email, transactions, username };
+					let userInfo = { id, email, username, transactions };
 
 					//create JSON web token with user data as payload
-					let token = signToken(user);
+					let token = signToken({ id, email, username });
 
 					//send client JSON web token along with user data
 					res.json({
 						token,
-						user,
+						userInfo,
 					});
 				}
 			}
