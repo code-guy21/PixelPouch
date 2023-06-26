@@ -38,7 +38,7 @@ module.exports = {
 				const userInfo = { id, email, username };
 
 				//create JSON web token with user data as payload
-				const token = signToken(userInfo);
+				const token = await signToken(userInfo);
 
 				//send back token along with user data
 				res.status(200).json({
@@ -85,7 +85,7 @@ module.exports = {
 					let userInfo = { id, email, username, transactions };
 
 					//create JSON web token with user data as payload
-					let token = signToken({ id, email, username });
+					let token = await signToken({ id, email, username });
 
 					//send client JSON web token along with user data
 					res.json({

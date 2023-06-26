@@ -1,30 +1,47 @@
 const jwt = require('jsonwebtoken');
+const { createClient } = require('redis');
 require('dotenv').config();
 
-module.exports = {
+let client;
 
-    //verifies JSON web token coming from request authorization header
+(async () => {
+	client = createClient({
+		legacyMode: true,
+		socket: {
+			port: process.env.REDIS_PORT,
+			host: process.env.REDIS_URL,
+		},
+	});
+	client.on('error', err => {
+		console.log('Redis Client Error', err);
+		process.exit(1);
+	});
+	await client.connect();
+})();
+
+module.exports = {
+	//verifies JSON web token coming from request authorization header
 	authMiddleware: (req, res, next) => {
-        //retrieve authorization header
+		//retrieve authorization header
 		const auth = req.headers.authorization;
 
-        //check if authorization header exists
+		//check if authorization header exists
 		if (!auth) {
 			res.status(401).send('unauthorized');
 		} else {
-            //separate JSON web token from authorization header
+			//separate JSON web token from authorization header
 			const token = auth.split(' ')[1];
 
 			try {
-                //verify JSON web token and extract user data
+				//verify JSON web token and extract user data
 				const { data } = jwt.verify(token, process.env.JWT_SECRET, {
 					maxAge: process.env.EXPIRATION,
 				});
 
-                //attach user data to req object
+				//attach user data to req object
 				req.user = data;
 
-                //continue to API route
+				//continue to API route
 				next();
 			} catch (error) {
 				res.status(401).send('unauthorized');
@@ -32,10 +49,10 @@ module.exports = {
 		}
 	},
 
-    //creates JSON web token
-	signToken: ({ email, username, id }) => {
+	//creates JSON web token
+	signToken: async ({ email, username, id }) => {
 		try {
-            //email,username,and id are used as payload for JSON web token
+			//email,username,and id are used as payload for JSON web token
 			const token = jwt.sign(
 				{
 					data: { email, username, id },
@@ -43,6 +60,7 @@ module.exports = {
 				process.env.JWT_SECRET,
 				{ expiresIn: process.env.EXPIRATION }
 			);
+			await client.set(token, id);
 			return token;
 		} catch (error) {
 			throw new Error(error);
