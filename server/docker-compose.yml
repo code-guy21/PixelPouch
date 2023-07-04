@@ -22,6 +22,22 @@ services:
     networks:
       - internalnet
 
+  redis:
+    image: redis:bullseye
+    container_name: rediscontainer
+    restart: unless-stopped
+    ports:
+      - 6379:6379
+    expose:
+      - 6379
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - internalnet
+
   api:
     container_name: apicontainer
     build: .
@@ -38,8 +54,12 @@ services:
       DB_PASSWORD: myStrongPassword!
       JWT_SECRET: SDfhfdh645^$7
       EXPIRATION: 15h
+      REDIS_PORT: 6379
+      REDIS_URL: redis
     depends_on:
       mysqldb:
+        condition: service_healthy
+      redis:
         condition: service_healthy
     networks:
       - internalnet
