@@ -6,7 +6,6 @@ let client;
 
 (async () => {
 	client = createClient({
-		legacyMode: true,
 		socket: {
 			port: process.env.REDIS_PORT,
 			host: process.env.REDIS_URL,
@@ -21,7 +20,7 @@ let client;
 
 module.exports = {
 	//verifies JSON web token coming from request authorization header
-	authMiddleware: (req, res, next) => {
+	authMiddleware: async (req, res, next) => {
 		//retrieve authorization header
 		const auth = req.headers.authorization;
 
@@ -38,11 +37,17 @@ module.exports = {
 					maxAge: process.env.EXPIRATION,
 				});
 
-				//attach user data to req object
-				req.user = data;
+				let reply = await client.get(token);
 
-				//continue to API route
-				next();
+				if (reply && reply === data.id) {
+					//attach user data to req object
+					req.user = data;
+
+					//continue to API route
+					next();
+				} else {
+					res.status(401).send('unauthorized');
+				}
 			} catch (error) {
 				res.status(401).send('unauthorized');
 			}
@@ -50,12 +55,12 @@ module.exports = {
 	},
 
 	//creates JSON web token
-	signToken: async ({ email, username, id }) => {
+	signToken: async id => {
 		try {
 			//email,username,and id are used as payload for JSON web token
 			const token = jwt.sign(
 				{
-					data: { email, username, id },
+					data: { id },
 				},
 				process.env.JWT_SECRET,
 				{ expiresIn: process.env.EXPIRATION }
