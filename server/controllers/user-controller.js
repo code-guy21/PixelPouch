@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { User, Transaction } = require('../models');
-const { signToken } = require('../utils/auth');
+const { signToken, removeToken } = require('../utils/auth');
 
 module.exports = {
 	currentUser: async (req, res) => {
@@ -96,6 +96,17 @@ module.exports = {
 			}
 		} catch (error) {
 			res.status(500).send('Error logging in');
+		}
+	},
+
+	logoutUser: async (req, res) => {
+		try {
+			let auth = req.headers.authorization;
+			const token = auth.split(' ')[1];
+			await removeToken(token);
+			res.status(200).send('successfully logged out!');
+		} catch (error) {
+			res.status(500).send(error);
 		}
 	},
 };

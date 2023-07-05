@@ -23,3 +23,11 @@ export const currentUser = async token =>
 			authorization: 'Bearer ' + token,
 		},
 	});
+
+export const logout = async token =>
+	fetch('/api/user/logout', {
+		method: 'POST',
+		headers: {
+			authorization: 'Bearer ' + token,
+		},
+	});

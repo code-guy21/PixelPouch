@@ -71,4 +71,12 @@ module.exports = {
 			throw new Error(error);
 		}
 	},
+	removeToken: async token => {
+		try {
+			let reply = await client.del(token);
+			return reply;
+		} catch (error) {
+			throw new Error(error);
+		}
+	},
 };
