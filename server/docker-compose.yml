@@ -9,7 +9,7 @@ services:
     ports:
       - 3307:3306
     expose:
-      - 3306
+      - 3307
     environment:
       MYSQL_DATABASE: nftracker
       MYSQL_USER: admin
@@ -40,8 +40,13 @@ services:
 
   api:
     container_name: apicontainer
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: nodeapi:1.0
+    volumes:
+      - ./:/app
+      - /app/node_modules
     ports:
       - 3001:3001
     expose:
