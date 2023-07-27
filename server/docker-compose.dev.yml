@@ -42,7 +42,7 @@ services:
     container_name: apicontainer
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     image: nodeapi:1.0
     volumes:
       - ./:/app

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  api:
+    container_name: apicontainer
+    image: nodeapi:1.0
+    volumes:
+      - ./app:/app:ro
+    ports:
+      - 3001:3001
+    environment:
+      DB_HOST: !sm arn:aws:secretsmanager:us-east-1:970578256062:secret:testSecret-mUBR8g
+      DB_NAME: nftracker
+      DB_USER: admin
+      DB_PORT: 3306
+      DB_PASSWORD: !sm arn:aws:secretsmanager:us-east-1:970578256062:secret:testSecret-mUBR8g
+      JWT_SECRET: !sm arn:aws:secretsmanager:us-east-1:970578256062:secret:testSecret-mUBR8g
+      EXPIRATION: 15h
+      REDIS_PORT: 6379
+      REDIS_URL: !sm arn:aws:secretsmanager:us-east-1:970578256062:secret:testSecret-mUBR8g
+    networks:
+      - internalnet
+
+networks:
+  internalnet:
+    driver: bridge
