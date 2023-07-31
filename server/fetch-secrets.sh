@@ -8,16 +8,16 @@ function fetch_secret {
 }
 
 # Fetch secrets from AWS Secrets Manager
-DB_HOST_SECRET_NAME="testSecret/DB_HOST"
-DB_PASSWORD_SECRET_NAME="testSecret/DB_PASSWORD"
-JWT_SECRET_SECRET_NAME="testSecret/JWT_SECRET"
-REDIS_URL_SECRET_NAME="testSecret/REDIS_URL"
+SECRET_NAME="testSecret"
 
-# Fetch each secret and store them in variables
-DB_HOST=$(fetch_secret "$DB_HOST_SECRET_NAME")
-DB_PASSWORD=$(fetch_secret "$DB_PASSWORD_SECRET_NAME")
-JWT_SECRET=$(fetch_secret "$JWT_SECRET_SECRET_NAME")
-REDIS_URL=$(fetch_secret "$REDIS_URL_SECRET_NAME")
+# Fetch the whole secret
+SECRET_STRING=$(fetch_secret "$SECRET_NAME")
+
+# Parse the JSON secret string to get individual values
+DB_HOST=$(echo "$SECRET_STRING" | jq -r '.DB_HOST')
+DB_PASSWORD=$(echo "$SECRET_STRING" | jq -r '.DB_PASSWORD')
+JWT_SECRET=$(echo "$SECRET_STRING" | jq -r '.JWT_SECRET')
+REDIS_URL=$(echo "$SECRET_STRING" | jq -r '.REDIS_URL')
 
 # Export the secrets as environment variables
 export DB_HOST
