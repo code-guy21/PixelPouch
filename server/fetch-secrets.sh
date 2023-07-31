@@ -8,10 +8,10 @@ function fetch_secret {
 }
 
 # Fetch secrets from AWS Secrets Manager
-DB_HOST_SECRET_NAME="testSecret/db_host"
-DB_PASSWORD_SECRET_NAME="testSecret/db_password"
-JWT_SECRET_SECRET_NAME="testSecret/jwt_secret"
-REDIS_URL_SECRET_NAME="testSecret/redis_url"
+DB_HOST_SECRET_NAME="testSecret/DB_HOST"
+DB_PASSWORD_SECRET_NAME="testSecret/DB_PASSWORD"
+JWT_SECRET_SECRET_NAME="testSecret/JWT_SECRET"
+REDIS_URL_SECRET_NAME="testSecret/REDIS_URL"
 
 # Fetch each secret and store them in variables
 DB_HOST=$(fetch_secret "$DB_HOST_SECRET_NAME")
