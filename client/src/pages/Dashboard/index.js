@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { currentUser } from '../../utils/api';
+import { currentUser, logout } from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, loginUser } from '../../redux/reducers/userSlice';
@@ -15,10 +15,15 @@ function Dashboard() {
 	const user = useSelector(state => state.user);
 	const navigate = useNavigate();
 
-	const handleLogout = () => {
-		Auth.logout();
-		dispatch(logoutUser());
-		navigate('/');
+	const handleLogout = async () => {
+		try {
+			await logout(Auth.getToken());
+			Auth.removeToken();
+			dispatch(logoutUser());
+			navigate('/');
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {

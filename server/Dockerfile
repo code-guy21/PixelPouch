@@ -1,13 +1,15 @@
-FROM node:alpine3.16
+FROM node:14-alpine
+
+ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json ./
 
-RUN npm install
+RUN npm ci --only=production
 
 COPY . .
 
 EXPOSE 3001
 
-CMD ["npm", "start"]
+CMD ["node", "server.js"]

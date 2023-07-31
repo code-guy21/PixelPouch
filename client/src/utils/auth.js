@@ -1,33 +1,32 @@
-import jwt_decode from "jwt-decode"
+import jwt_decode from 'jwt-decode';
 
 class AuthService {
 	login(token) {
 		localStorage.setItem('auth_token', token);
 	}
 
-	getUser(token){
-		return jwt_decode(token)
+	getUser(token) {
+		return jwt_decode(token);
 	}
 
-	loggedIn(){
+	loggedIn() {
 		return !this.isTokenExpired(this.getToken()) && this.getToken();
 	}
 
-	isTokenExpired(token){
-
+	isTokenExpired(token) {
 		try {
-			const user = jwt_decode(token)
-			return user.exp < Date.now()/1000 ? true : false;
+			const user = jwt_decode(token);
+			return user.exp < Date.now() / 1000 ? true : false;
 		} catch (error) {
 			return true;
 		}
 	}
-	
-	getToken(){
-		return localStorage.getItem("auth_token")
+
+	getToken() {
+		return localStorage.getItem('auth_token');
 	}
 
-	logout() {
+	removeToken() {
 		localStorage.removeItem('auth_token');
 	}
 }

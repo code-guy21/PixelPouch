@@ -1,6 +1,6 @@
 const { Op } = require('sequelize');
 const { User, Transaction } = require('../models');
-const { signToken } = require('../utils/auth');
+const { signToken, removeToken } = require('../utils/auth');
 
 module.exports = {
 	currentUser: async (req, res) => {
@@ -38,7 +38,7 @@ module.exports = {
 				const userInfo = { id, email, username };
 
 				//create JSON web token with user data as payload
-				const token = await signToken(userInfo);
+				const token = await signToken(id);
 
 				//send back token along with user data
 				res.status(200).json({
@@ -85,7 +85,7 @@ module.exports = {
 					let userInfo = { id, email, username, transactions };
 
 					//create JSON web token with user data as payload
-					let token = await signToken({ id, email, username });
+					let token = await signToken(id);
 
 					//send client JSON web token along with user data
 					res.json({
@@ -96,6 +96,17 @@ module.exports = {
 			}
 		} catch (error) {
 			res.status(500).send('Error logging in');
+		}
+	},
+
+	logoutUser: async (req, res) => {
+		try {
+			let auth = req.headers.authorization;
+			const token = auth.split(' ')[1];
+			await removeToken(token);
+			res.status(200).send('successfully logged out!');
+		} catch (error) {
+			res.status(500).send(error);
 		}
 	},
 };
