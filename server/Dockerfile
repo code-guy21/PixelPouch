@@ -4,12 +4,14 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
 
 EXPOSE 3001
+
+EXPOSE 9299
 
 CMD ["node", "server.js"]
