@@ -8,7 +8,7 @@ function fetch_secret {
 }
 
 # Fetch secrets from AWS Secrets Manager
-SECRET_NAME="testSecret"
+SECRET_NAME="NFTracker"
 
 # Fetch the whole secret
 SECRET_STRING=$(fetch_secret "$SECRET_NAME")
